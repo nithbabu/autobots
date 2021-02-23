@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
+
+<body>
+
+<h1>Welcome to Autobots</h1>
+
+<div class="grid-wrapper">
+	<div class="form-group">
+		<a href="/garage" class="button">Click here to add a new vehicle</a>
+	</div>
+
+		<div class="form-group" data-th-if="${isAdmin}">
+			<table class="vehicle-table">
+				<thead>
+					<th>Model name</th>
+					<th>Color</th>
+					<th>Engine size</th>
+					<th>No. of wheels</th>
+					<th>Vehicle type</th>
+					<th>No. of doors</th>
+					<th>Carrying capacity</th>
+					<th>Max lean angle</th>
+					<th data-th-if="${isAdmin}">Actions</th>
+				</thead>
+				<tbody>
+					<tr data-th-each="vehicle : ${vehicles}">
+						<td data-th-text="${vehicle.modelname}"></td>
+						<td data-th-text="${vehicle.color}"></td>
+						<td data-th-text="${vehicle.enginesize}"></td>
+						<td data-th-text="${vehicle.numofwheels}"></td>
+						<td data-th-text="${vehicle.vehicletype}"></td>
+						<td data-th-text="${vehicle.numofdoors}">Nil</td>
+						<td data-th-text="${vehicle.carryingcapacity}">Nil</td>
+						<td data-th-text="${vehicle.maxleanangle}">Nil</td>
+						<td data-th-if="${isAdmin}">
+							<a data-th-href="@{/garage/editVehicle(modelname=${vehicle.modelname})}">Edit</a> <br/>
+							<a data-th-href="@{/garage/deleteVehicle(modelname=${vehicle.modelname})}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
+
+	<h1>Edit model : <span data-th-text="${param['modelname']}"></span></h1>
+<div class="grid-wrapper">
+
+	<form data-th-object="${vehicle}" method="post">
+		<div class="form-group">
+			<label for="vehicletype"><span class="mandatory">*</span>Vehicle type</label><br/> 
+			<select data-th-field="*{vehicletype}" id="vehicletype" class="form-control" data-th-disabled="${isEdit}" placeholder="Please select type">
+					<option value="">Please select vehicle type</option>
+					<option value="bike">bike</option>
+					<option value="car">car</option>
+					<option value="lorry">lorry</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="inline mandatory" for="modelname"><span class="mandatory">*</span>ModelName</label><br/> 
+			<input type="text" id="modelname" data-th-field="*{modelname}" class="form-control" data-th-disabled="${isEdit}"/>
+		</div>
+		<div class="form-group">
+			<label class="inline mandatory" for="color"><span class="mandatory">*</span>Color</label><br/> 
+			<input type="text" id="color" data-th-field="*{color}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline mandatory" for="engineSize"><span class="mandatory">*</span>engineSize</label><br/> 
+			<input type="text" id="engineSize" data-th-field="*{enginesize}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline" for="numofwheels"><span class="mandatory">*</span>numOfWheels</label><br/> 
+			<input type="text" id="numofwheels" data-th-field="*{numofwheels}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
+			<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
+			<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
+			<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+		</div>
+		<div class="form-group">
+			<label class="inline" for="submit" style="text-align: center;">Click here to submit</label><br/> 
+			<input type="submit" name="submit" class="form-control" value="submit"/>		
+		</div>
+		
+	</form>
+</div>
+
+</body>
+</html>
