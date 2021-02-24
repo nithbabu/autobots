@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
+<body>
+
+	<div class="grid-wrapper">
+		<h1>Compare your vehicles here</h1>
+
+		<form method="post" data-th-object="${comparisonCommand}">
+
+			<div class="form-group">
+				<label for="modelnames"><span class="mandatory">*</span>Select
+					your vehicles to compare</label><br/>
+				 <select id="modelnames" name="modelnames" data-th-value="${comparisonCommand.modelnames}" class="form-control" multiple>
+					<option>Please select options</option>
+					<option data-th-each="item : ${vehiclelist}"
+						data-th-value="${item}" data-th-text="${item}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for=""><span class="mandatory">*</span>Select which
+					property you want to compare</label><br/>
+			    <select id="property" name="property" data-th-value="${comparisonCommand.property}" class="form-control">
+					<option>Please select options</option>
+					<option value="numofdoors">No. of doors</option>
+					<option value="numofwheels">No. of wheels</option>
+					<option value="enginesize">Size of engine</option>
+					<option value="carryingcapacity">Carrying capacity</option>
+					<option value="maxleanangle">Lean angle</option>
+				</select>
+			</div>
+			
+			<div class="form-group">			
+				<input type="submit" value="Compare" class="form-control button"/>
+			</div>
+			
+
+			<div class="form-group" data-th-if="${viewTable}">
+				<h2>Comparison table for the selected vehicles</h2>
+				<table class="comparison-table">
+					<thead>
+						<th>Model name</th>
+						<th data-th-text="${property}"></th>
+					</thead>
+					<tbody>
+						<tr data-th-each="vehicle : ${vehicles}">
+							<td data-th-text="${vehicle.key}"></td>
+							<td data-th-text="${vehicle.value}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</form>
+
+	</div>
+
+</body>
+</html>

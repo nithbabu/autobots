@@ -30,13 +30,13 @@ public class Vehicle {
     String vehicletype;
 	
 	@Column(name = "numofdoors")
-    String numofdoors;
+    int numofdoors;
 	
 	@Column(name = "carryingcapacity")
-    String carryingcapacity;
+    int carryingcapacity;
 	
 	@Column(name = "maxleanangle")
-     String maxleanangle;
+    int maxleanangle;
     
 	public String getModelname() {
 		return modelname;
@@ -68,22 +68,22 @@ public class Vehicle {
 	public void setVehicletype(String vehicletype) {
 		this.vehicletype = vehicletype;
 	}
-	public String getNumofdoors() {
+	public int getNumofdoors() {
 		return numofdoors;
 	}
-	public void setNumofdoors(String numofdoors) {
+	public void setNumofdoors(int numofdoors) {
 		this.numofdoors = numofdoors;
 	}
-	public String getCarryingcapacity() {
+	public int getCarryingcapacity() {
 		return carryingcapacity;
 	}
-	public void setCarryingcapacity(String carryingcapacity) {
+	public void setCarryingcapacity(int carryingcapacity) {
 		this.carryingcapacity = carryingcapacity;
 	}
-	public String getMaxleanangle() {
+	public int getMaxleanangle() {
 		return maxleanangle;
 	}
-	public void setMaxleanangle(String maxleanangle) {
+	public void setMaxleanangle(int maxleanangle) {
 		this.maxleanangle = maxleanangle;
 	}
     

@@ -7,18 +7,21 @@
 
 <!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
 
-	<h1>Edit model : <span data-th-text="${param['modelname']}"></span></h1>
 <div class="grid-wrapper">
+	<h1 data-th-if="${isEdit}">Edit model : <span data-th-text="${param['modelname']}"></span></h1>
+	<h1 data-th-unless="${isEdit}">Create new vehicle </h1>
 
 	<form data-th-object="${vehicle}" method="post">
 		<div class="form-group">
 			<label for="vehicletype"><span class="mandatory">*</span>Vehicle type</label><br/> 
-			<select data-th-field="*{vehicletype}" id="vehicletype" class="form-control" data-th-disabled="${isEdit}" placeholder="Please select type">
+			<select data-th-field="*{vehicletype}" id="vehicletype" class="form-control"
+			 data-th-disabled="${isEdit}" placeholder="Please select type">
 					<option value="">Please select vehicle type</option>
 					<option value="bike">bike</option>
 					<option value="car">car</option>
 					<option value="lorry">lorry</option>
 			</select>
+			<input type="hidden" data-th-field="*{vehicletype}"/>
 		</div>
 		<div class="form-group">
 			<label class="inline mandatory" for="modelname"><span class="mandatory">*</span>ModelName</label><br/> 
@@ -36,21 +39,37 @@
 			<label class="inline" for="numofwheels"><span class="mandatory">*</span>numOfWheels</label><br/> 
 			<input type="text" id="numofwheels" data-th-field="*{numofwheels}" class="form-control"/>		
 		</div>
-		<div class="form-group">
-			<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
-			<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+		<div data-th-if="${isEdit}">
+			<div class="form-group" data-th-if="${#strings.equals(vehicle.vehicletype,'lorry')}">
+				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
+				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+			</div>
+			<div class="form-group" data-th-unless="${#strings.equals(vehicle.vehicletype,'bike')}">
+				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
+				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
+			</div>
+			<div class="form-group" data-th-if="${#strings.equals(vehicle.vehicletype,'bike')} ">
+				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
+				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+			</div>
 		</div>
-		<div class="form-group">
-			<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
-			<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
-		</div>
-		<div class="form-group">
-			<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
-			<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+		<div data-th-unless="${isEdit}">
+			<div class="form-group">
+				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
+				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+			</div>
+			<div class="form-group">
+				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
+				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
+			</div>
+			<div class="form-group">
+				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
+				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+			</div>
 		</div>
 		<div class="form-group">
 			<label class="inline" for="submit" style="text-align: center;">Click here to submit</label><br/> 
-			<input type="submit" name="submit" class="form-control" value="submit"/>		
+			<input type="submit" name="submit" class="form-control button" value="submit"/>		
 		</div>
 		
 	</form>

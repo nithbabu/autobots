@@ -2,11 +2,11 @@
 
 body h1 {
     align-content: center;
-    margin-left: 608px;
+    margin-left: 300px;
 }
 
 .grid-wrapper {
-	max-width: 960px;
+	max-width: 1015px;
 	font-family: "nta", Arial, sans-serif;
     font-weight: 400;
     text-transform: none;
@@ -21,6 +21,11 @@ body h1 {
     margin-bottom: 15px;
 }
 
+.grid-wrapper form {
+    margin-left: 30px;
+    padding-bottom: 30px;
+}
+
 .grid-wrapper .form-group .form-control {
 	width: 50%;
 	padding: 7px;
@@ -29,6 +34,10 @@ body h1 {
     text-transform: none;
     display: block;
     font-size: 19px;
+}
+
+.button-group a {
+	margin-right: 30px;
 }
 
 .button {
@@ -65,4 +74,16 @@ label {
 }
 label .mandatory {
 	color: red;	
+}
+
+.vehicle-table th {
+	padding-right: 46px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+select[multiple] {
+    /*height: 40px;*/
 }

@@ -23,6 +23,7 @@ public class GarageController {
 	public String getForm(Model model) {
 		Vehicle vehicle = new Vehicle();
 		model.addAttribute("vehicle", vehicle);
+		model.addAttribute("isEdit", false);
 		return "/createVehicle/form";
 	}
 	
@@ -30,13 +31,13 @@ public class GarageController {
 	public String postForm(Vehicle vehicle) {
 		System.out.println("post endpoint reached");
 		if(vehicle.getVehicletype().equals("bike")) {
-			vehicle.setNumofdoors("0");
-			vehicle.setCarryingcapacity("0");
+			vehicle.setNumofdoors(0);
+			vehicle.setCarryingcapacity(0);
 		} else if(vehicle.getVehicletype().equals("car")) {
-			vehicle.setMaxleanangle("0");
-			vehicle.setCarryingcapacity("0");
+			vehicle.setMaxleanangle(0);
+			vehicle.setCarryingcapacity(0);
 		} else if(vehicle.getVehicletype().equals("lorry")) {
-			vehicle.setMaxleanangle("0");
+			vehicle.setMaxleanangle(0);
 		}
 		vehicleService.save(vehicle);
 		return "redirect:/vehicles";

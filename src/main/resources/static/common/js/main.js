@@ -3,6 +3,7 @@
  */
  
 jQuery(document).ready(function($){
+
 	$("#vehicletype").on("change", function() {
 		console.log($(this).val());
 		if($(this).val() == "bike") {
