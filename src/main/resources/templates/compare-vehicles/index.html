@@ -6,6 +6,8 @@
 <body>
 
 	<div class="grid-wrapper">
+		<!--/*/ <th:block th:insert="~{fragments/logout :: button}" /> /*/-->
+	
 		<h1>Compare your vehicles here</h1>
 
 		<form method="post" data-th-object="${comparisonCommand}">
@@ -25,11 +27,11 @@
 					property you want to compare</label><br/>
 			    <select id="property" name="property" data-th-value="${comparisonCommand.property}" class="form-control">
 					<option>Please select options</option>
-					<option value="numofdoors">No. of doors</option>
-					<option value="numofwheels">No. of wheels</option>
-					<option value="enginesize">Size of engine</option>
-					<option value="carryingcapacity">Carrying capacity</option>
-					<option value="maxleanangle">Lean angle</option>
+					<option value="No. of doors">No. of doors</option>
+					<option value="No. of wheels">No. of wheels</option>
+					<option value="Size of engine">Size of engine</option>
+					<option value="Carrying capacity">Carrying capacity</option>
+					<option value="Lean angle">Lean angle</option>
 				</select>
 			</div>
 			

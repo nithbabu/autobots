@@ -8,10 +8,15 @@
 <!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
 
 <div class="grid-wrapper">
+
+	<!--/*/ <th:block th:insert="~{fragments/logout :: button}" /> /*/-->
 	<h1 data-th-if="${isEdit}">Edit model : <span data-th-text="${param['modelname']}"></span></h1>
 	<h1 data-th-unless="${isEdit}">Create new vehicle </h1>
 
-	<form data-th-object="${vehicle}" method="post">
+		<form data-th-object="${vehicle}" method="post">
+		
+		<!--/*/ <th:block th:insert="~{fragments/error-header :: errors}" /> /*/-->
+		
 		<div class="form-group">
 			<label for="vehicletype"><span class="mandatory">*</span>Vehicle type</label><br/> 
 			<select data-th-field="*{vehicletype}" id="vehicletype" class="form-control"

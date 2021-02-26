@@ -50,25 +50,25 @@ public class ComparisonController {
 		Map<String, Integer> map = new LinkedHashMap<>();
 		Vehicle vehicle = new Vehicle();
 		
-		if (command.getProperty().equals("numofdoors")) {
+		if (command.getProperty().equals("No. of doors")) {
 			vehicles.forEach(v -> {
 				map.put(v.getModelname(), v.getNumofdoors());
 			});
-		} else if (command.getProperty().equals("numofwheels")) {
+		} else if (command.getProperty().equals("No. of wheels")) {
 			vehicles.forEach(v -> {
 				map.put(v.getModelname(), v.getNumofwheels());
 			});
-		} else if (command.getProperty().equals("enginesize")) {
+		} else if (command.getProperty().equals("Size of engine")) {
 			vehicles.forEach(v -> {
 				map.put(v.getModelname(), v.getEnginesize());
 			});
 
-		} else if (command.getProperty().equals("carryingcapacity")) {
+		} else if (command.getProperty().equals("Carrying capacity")) {
 			vehicles.forEach(v -> {
 				map.put(v.getModelname(), v.getCarryingcapacity());
 			});
 
-		} else if (command.getProperty().equals("maxleanangle")) {
+		} else if (command.getProperty().equals("Lean angle")) {
 			vehicles.forEach(v -> {
 				map.put(v.getModelname(), v.getMaxleanangle());
 			});		

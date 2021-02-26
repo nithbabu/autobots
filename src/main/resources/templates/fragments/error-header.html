@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+<!--/*/ <th:block th:fragment="errors"> /*/-->
+<div class="error-list" data-th-if="${#fields.hasAnyErrors()}">
+    <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1"
+         tabindex="-1" data-th-with="errorCount=${#fields.errors('*').size()}">
+
+         <p data-th-if="${errorCount > 1}" data-th-text="'The form contains ' + ${errorCount} + ' errors, see details below'"></p>
+          <p data-th-unless="${errorCount > 1}" data-th-text="'The form contains ' + ${errorCount} + ' error, see details below'"></p>
+        <ul class="error-summary-list">
+            <li data-th-each="e : ${#fields.detailedErrors()}" data-th-utext="${e.message}"></li>
+        </ul>
+    </div>
+</div>
+<!--/*/ </th:block> /*/-->
+
+</body>
+</html>
