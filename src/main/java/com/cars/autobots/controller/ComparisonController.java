@@ -25,7 +25,7 @@ import com.cars.autobots.service.VehicleService;
 public class ComparisonController {
 	
 	private static final String COMPARE = "/compare-vehicles";
-	private static final String COMPARE_INDEX = "compare-vehicles/index";
+	static final String COMPARE_INDEX = "compare-vehicles/index";
 	
 	@Autowired
 	private VehicleService vehicleService;
@@ -35,9 +35,15 @@ public class ComparisonController {
 	
 	@GetMapping(COMPARE)
 	public String getCompareIndex(ModelMap model) {
-		
+
 		ComparisonCommand command = new ComparisonCommand();
-		model.addAttribute("viewTable", false);
+
+		if(model.get("comparisonCommand") != null) {
+			command = (ComparisonCommand) model.get("comparisonCommand");
+			model.addAttribute("viewTable", true);
+		} else {
+			model.addAttribute("viewTable", false);
+		}
 		
 		modelSetter(model, command);
 		
@@ -48,7 +54,6 @@ public class ComparisonController {
 	public String compare(ModelMap model, ComparisonCommand command, RedirectAttributes attr) {
 		List<Vehicle> vehicles = comparisonService.getVehicles(command.getModelnames());
 		Map<String, Integer> map = new LinkedHashMap<>();
-		Vehicle vehicle = new Vehicle();
 		
 		if (command.getProperty().equals("No. of doors")) {
 			vehicles.forEach(v -> {
@@ -78,11 +83,11 @@ public class ComparisonController {
 		sortedMap = map.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
 		                LinkedHashMap::new));
-		model.addAttribute("vehicles", sortedMap);
-		model.addAttribute("viewTable", true);
-		model.addAttribute("property", command.getProperty());
-		modelSetter(model, command);
-		return COMPARE_INDEX;
+		attr.addFlashAttribute("vehicles", sortedMap);
+		attr.addFlashAttribute("viewTable", true);
+		attr.addFlashAttribute("property", command.getProperty());
+		attr.addFlashAttribute("comparisonCommand", command);
+		return "redirect:"+COMPARE;
 	}
 	
 	private void modelSetter(ModelMap model, ComparisonCommand command) {

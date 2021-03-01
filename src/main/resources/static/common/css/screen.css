@@ -26,12 +26,15 @@ body h1 {
     padding-bottom: 30px;
 }
 
-.grid-wrapper .nav-div {
-    float: right;
+.grid-wrapper .nav-div .home-btn{
+    float: left;
+    text-decoration: none;
+    background-color: honeydew;
 }  
 .logout-btn {
     text-decoration: none;
     background-color: honeydew;
+    float: right;
 }
 
 

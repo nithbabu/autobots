@@ -43,7 +43,7 @@ public class GarageValidator implements Validator {
 		if (!(vehicle.getEnginesize() > 0)) {
 			errors.reject("modelname", "Engine size cannot be empty");
 		}
-		if (!(vehicle.getMaxleanangle() > 0)) {
+		if (!(vehicle.getMaxleanangle() >= 0)) {
 			errors.reject("leanangle", "Lean angle cannot be empty");
 		}
 		

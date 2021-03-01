@@ -10,12 +10,12 @@
 
 <div class="grid-wrapper">
 
-	<!--/*/ <th:block th:insert="~{fragments/logout :: button}" /> /*/-->
+	<!--/*/ <th:block th:insert="~{fragments/header-nav :: button}" /> /*/-->
 
 	<h1>Welcome to Autobots</h1>
 	
 	<div class="form-group button-group">
-		<a href="/garage" class="button">Add new vehicle</a>
+		<a href="/garage" class="button" data-th-if="${isAdmin}">Add new vehicle</a>
 		<a href="/compare-vehicles" class="button">Compare vehicles</a>
 	</div>
 	

@@ -6,7 +6,7 @@
 <body>
 
 	<div class="grid-wrapper">
-		<!--/*/ <th:block th:insert="~{fragments/logout :: button}" /> /*/-->
+		<!--/*/ <th:block th:insert="~{fragments/header-nav :: button}" /> /*/-->
 	
 		<h1>Compare your vehicles here</h1>
 
@@ -23,7 +23,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for=""><span class="mandatory">*</span>Select which
+				<label for="property"><span class="mandatory">*</span>Select which
 					property you want to compare</label><br/>
 			    <select id="property" name="property" data-th-value="${comparisonCommand.property}" class="form-control">
 					<option>Please select options</option>

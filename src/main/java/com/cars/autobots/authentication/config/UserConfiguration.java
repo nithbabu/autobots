@@ -30,6 +30,8 @@ public class UserConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/garage/editVehicle").hasRole("ADMIN")
 			.antMatchers(HttpMethod.POST, "/garage/editVehicle").hasRole("ADMIN")
 			.antMatchers(HttpMethod.GET, "/garage/deleteVehicle").hasRole("ADMIN")
+			.antMatchers("/").hasRole("ADMIN")
+			.antMatchers("/").hasRole("USER")
 			.antMatchers("/vehicles").permitAll()
 			.antMatchers(HttpMethod.POST, "/compare-vehicles").permitAll()
 			.antMatchers(HttpMethod.GET, "/compare-vehicles").permitAll()

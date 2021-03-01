@@ -3,6 +3,12 @@ package com.cars.autobots.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -60,15 +66,33 @@ public class GarageController {
 			vehicle.setMaxleanangle(0);
 		}
 		
-		vehicleService.save(vehicle);
-		return "redirect:/vehicles";
+		ResponseEntity<Vehicle> responseEntity = vehicleService.save(vehicle);
+
+		if(responseEntity.getStatusCode() == HttpStatus.OK) {
+			return "redirect:/vehicles";
+		} else {
+			attr.addFlashAttribute("error", "An error occurred while saving the new vehicle");
+			return "/createVehicle/form";
+		}
 	}
 	
 	@GetMapping("/vehicles")
 	public String getIndex(ModelMap model) {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = null;
+		String username = "";
+		if (authentication != null) {
+			principal = authentication.getPrincipal();
+			if (principal instanceof UserDetails) {
+				username = ((UserDetails) principal).getUsername();
+			} else {
+				username = principal.toString();
+			}
+		}
 		List<Vehicle> list = vehicleService.listAll();
 		model.addAttribute("vehicles", list);
-		model.addAttribute("isAdmin", true);
+		model.addAttribute("isAdmin", username.equals("admin"));
 		model.addAttribute("noData", list.isEmpty());
 		return "vehicleIndex";
 	}

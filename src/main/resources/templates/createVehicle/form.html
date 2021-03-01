@@ -9,7 +9,7 @@
 
 <div class="grid-wrapper">
 
-	<!--/*/ <th:block th:insert="~{fragments/logout :: button}" /> /*/-->
+	<!--/*/ <th:block th:insert="~{fragments/header-nav :: button}" /> /*/-->
 	<h1 data-th-if="${isEdit}">Edit model : <span data-th-text="${param['modelname']}"></span></h1>
 	<h1 data-th-unless="${isEdit}">Create new vehicle </h1>
 
