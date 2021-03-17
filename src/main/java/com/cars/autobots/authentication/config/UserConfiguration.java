@@ -27,14 +27,13 @@ public class UserConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/garage").hasRole("ADMIN")
 			.antMatchers(HttpMethod.POST, "/garage").hasRole("ADMIN")
-			.antMatchers(HttpMethod.GET, "/garage/editVehicle").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/garage/editVehicle").permitAll()
+//			.antMatchers(HttpMethod.GET, "/garage/editVehicle").hasRole("USER")
 			.antMatchers(HttpMethod.POST, "/garage/editVehicle").hasRole("ADMIN")
 			.antMatchers(HttpMethod.GET, "/garage/deleteVehicle").hasRole("ADMIN")
-			.antMatchers("/").hasRole("ADMIN")
-			.antMatchers("/").hasRole("USER")
+			.antMatchers("/").permitAll()
 			.antMatchers("/vehicles").permitAll()
 			.antMatchers(HttpMethod.POST, "/compare-vehicles").permitAll()
-			.antMatchers(HttpMethod.GET, "/compare-vehicles").permitAll()
 			.and().csrf().disable()
 			.formLogin();
 	}
