@@ -4,6 +4,8 @@
  
 jQuery(document).ready(function($){
 
+	$('select').select2();
+
 	$("#vehicletype").on("change", function() {
 		console.log($(this).val());
 		if($(this).val() == "bike") {

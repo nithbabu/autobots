@@ -8,70 +8,82 @@
 <!--/*/ <th:block th:insert="~{fragments/header :: common}" /> /*/-->
 
 <div class="grid-wrapper">
-	<h1 data-th-if="${isEdit}">Edit model : <span data-th-text="${param['modelname']}"></span></h1>
+
+	<!--/*/ <th:block th:insert="~{fragments/header-nav :: button}" /> /*/-->
+	<div data-th-if="${isEdit}">
+		<div data-th-if="${param['readOnly']}">
+			<h1>Model : <span data-th-text="${param['modelname']}"></span></h1>
+		</div>
+		<div data-th-unless="${param['readOnly']}">
+			<h1>Edit model : <span data-th-text="${param['modelname']}"></span></h1>
+		</div>
+	</div>
 	<h1 data-th-unless="${isEdit}">Create new vehicle </h1>
 
 	<form data-th-object="${vehicle}" method="post">
+
+		<!--/*/ <th:block th:insert="~{fragments/error-header :: errors}" /> /*/-->
+
 		<div class="form-group">
-			<label for="vehicletype"><span class="mandatory">*</span>Vehicle type</label><br/> 
+			<label for="vehicletype"><span class="mandatory">*</span>Vehicle type</label><br/>
 			<select data-th-field="*{vehicletype}" id="vehicletype" class="form-control"
-			 data-th-disabled="${isEdit}" placeholder="Please select type">
-					<option value="">Please select vehicle type</option>
-					<option value="bike">bike</option>
-					<option value="car">car</option>
-					<option value="lorry">lorry</option>
+					data-th-disabled="${isEdit}" placeholder="Please select type">
+				<option value="">Please select vehicle type</option>
+				<option value="bike">bike</option>
+				<option value="car">car</option>
+				<option value="lorry">lorry</option>
 			</select>
 			<input type="hidden" data-th-field="*{vehicletype}"/>
 		</div>
 		<div class="form-group">
-			<label class="inline mandatory" for="modelname"><span class="mandatory">*</span>ModelName</label><br/> 
+			<label class="inline mandatory" for="modelname"><span class="mandatory">*</span>ModelName</label><br/>
 			<input type="text" id="modelname" data-th-field="*{modelname}" class="form-control" data-th-disabled="${isEdit}"/>
 		</div>
 		<div class="form-group">
-			<label class="inline mandatory" for="color"><span class="mandatory">*</span>Color</label><br/> 
-			<input type="text" id="color" data-th-field="*{color}" class="form-control"/>		
+			<label class="inline mandatory" for="color"><span class="mandatory">*</span>Color</label><br/>
+			<input type="text" id="color" data-th-field="*{color}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 		</div>
 		<div class="form-group">
-			<label class="inline mandatory" for="engineSize"><span class="mandatory">*</span>engineSize</label><br/> 
-			<input type="text" id="engineSize" data-th-field="*{enginesize}" class="form-control"/>		
+			<label class="inline mandatory" for="engineSize"><span class="mandatory">*</span>engineSize</label><br/>
+			<input type="text" id="engineSize" data-th-field="*{enginesize}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 		</div>
 		<div class="form-group">
-			<label class="inline" for="numofwheels"><span class="mandatory">*</span>numOfWheels</label><br/> 
-			<input type="text" id="numofwheels" data-th-field="*{numofwheels}" class="form-control"/>		
+			<label class="inline" for="numofwheels"><span class="mandatory">*</span>numOfWheels</label><br/>
+			<input type="text" id="numofwheels" data-th-field="*{numofwheels}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 		</div>
 		<div data-th-if="${isEdit}">
 			<div class="form-group" data-th-if="${#strings.equals(vehicle.vehicletype,'lorry')}">
-				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
-				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/>
+				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 			</div>
 			<div class="form-group" data-th-unless="${#strings.equals(vehicle.vehicletype,'bike')}">
-				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
-				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
+				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/>
+				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 			</div>
 			<div class="form-group" data-th-if="${#strings.equals(vehicle.vehicletype,'bike')} ">
-				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
-				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/>
+				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control" data-th-disabled="${param['readOnly']}"/>
 			</div>
 		</div>
 		<div data-th-unless="${isEdit}">
 			<div class="form-group">
-				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/> 
-				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>		
+				<label class="inline" for="carryingcapacity"><span class="mandatory">*</span>carryingCapacity</label><br/>
+				<input type="text" id="carryingcapacity" data-th-field="*{carryingcapacity}" class="form-control"/>
 			</div>
 			<div class="form-group">
-				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/> 
-				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>		
+				<label class="inline" for="numofdoors"><span class="mandatory">*</span>numOfDoors</label><br/>
+				<input type="text" id="numofdoors" data-th-field="*{numofdoors}" class="form-control"/>
 			</div>
 			<div class="form-group">
-				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/> 
-				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>		
+				<label class="inline" for="maxleanangle"><span class="mandatory">*</span>maxLeanAngle</label><br/>
+				<input type="text" id="maxleanangle" data-th-field="*{maxleanangle}" class="form-control"/>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="inline" for="submit" style="text-align: center;">Click here to submit</label><br/> 
-			<input type="submit" name="submit" class="form-control button" value="submit"/>		
+		<div class="form-group" data-th-unless="${param['readOnly']}">
+			<label class="inline" for="submit" style="text-align: center;">Click here to submit</label><br/>
+			<input type="submit" name="submit" class="form-control button" value="submit" id="submit"/>
 		</div>
-		
+
 	</form>
 </div>
 

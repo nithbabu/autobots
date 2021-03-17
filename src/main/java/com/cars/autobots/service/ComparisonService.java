@@ -8,14 +8,21 @@ import org.springframework.stereotype.Service;
 import com.cars.autobots.command.Vehicle;
 import com.cars.autobots.repo.VehicleRepository;
 
-@Service
-public class ComparisonService {
+public interface ComparisonService {
 
-	@Autowired
-	private VehicleRepository vehicleRepository;
-	
-	public List<Vehicle> getVehicles(List<String> modelnames) {   	
-        return vehicleRepository.findAllById(modelnames);
-    }
+	List<Vehicle> getVehicles(List<String> modelnames);
+
+	@Service
+	class Default implements ComparisonService {
+
+		@Autowired
+		private VehicleRepository vehicleRepository;
+
+		@Override
+		public List<Vehicle> getVehicles(List<String> modelnames) {
+			return vehicleRepository.findAllById(modelnames);
+		}
+
+	}
 	
 }

@@ -26,6 +26,18 @@ body h1 {
     padding-bottom: 30px;
 }
 
+.grid-wrapper .nav-div .home-btn{
+    float: left;
+    text-decoration: none;
+    background-color: honeydew;
+}  
+.logout-btn {
+    text-decoration: none;
+    background-color: honeydew;
+    float: right;
+}
+
+
 .grid-wrapper .form-group .form-control {
 	width: 50%;
 	padding: 7px;
@@ -86,4 +98,11 @@ table, th, td {
 
 select[multiple] {
     /*height: 40px;*/
+}
+
+.error-summary {
+    color: red;
+    border: 1px solid black;
+    width: 70%;
+    margin-bottom: 20px;
 }
